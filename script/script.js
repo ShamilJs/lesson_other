@@ -1,9 +1,9 @@
 'use strict';
 
 const todoControl = document.querySelector('.todo-control'),
-	  headerInput = document.querySelector('.header-input'),//ввод новых дел
-	  todoList = document.querySelector('.todo-list'),//cltkfnm
-	  todoComplete = document.querySelector('.todo-completed');//сделано
+	  headerInput = document.querySelector('.header-input'),
+	  todoList = document.querySelector('.todo-list'),
+	  todoComplete = document.querySelector('.todo-completed');
 
 let todoData = [];
 const parseJson = function() {
@@ -11,19 +11,15 @@ const parseJson = function() {
 	console.log(storageJson);
 	if (storageJson === null) {
 		return;
-
 	} else {
 		 todoData = JSON.parse(storageJson);
 	}
 };
 parseJson();
 
-
 const render = function() {
-
 	todoList.textContent = '';
 	todoComplete.textContent = '';
-
 	todoData.forEach(function(item, index){
 		const li = document.createElement('li');
 			li.classList.add('todo-item');
@@ -62,15 +58,10 @@ todoControl.addEventListener('submit', function(event){
 			value: headerInput.value,
 			completed: false
 		}
-
 		todoData.push(newTodo);
-
-		// localStorage.setItem('value', headerInput.value);
-		// localStorage.setItem('completed', completed);
 		headerInput.value = '';
 		render();
 	}
 });
-
 
 render();
